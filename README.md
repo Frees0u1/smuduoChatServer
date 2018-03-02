@@ -14,9 +14,21 @@
 * ./TCP: 处理TCP连接的先关代码
 
 ### 聊天室程序文件代码
-* ChatServer.cpp
+* ChatServer.cpp -- 服务端实现
+* ChatClient.cpp -- 客户端实现,起两个线程, EventLoop线程负责网络IO, 主线程负责读取键盘输入
+* Codec.h        -- 简单的编解码器,消息格式只是简单在消息头部插入一个int32_t, 表示消息长度
 
-### 其他代码
-* ./CppTest: C++语言特性的测试代码,测试包括了lock_guard/furture等
+### 其他
+* ./CppTest: C++语言特性的测试代码,测试包括了lock_guard/furture/condition_variable等
+* ./Note.md 学习笔记
 
 
+## 编译与运行
+```make server``` 编译服务器可执行文件
+```make client``` 编译客户端可执行文件
+```make all``` 编译两者
+
+### 运行
+* ```./chatserver <port>``` 其中port缺省为9981
+* ```./chatclient <IP> <port>``` 不可缺省
+* 因为客户端有连接失败自动重连的功能,所以两者启动顺序无强制要求
