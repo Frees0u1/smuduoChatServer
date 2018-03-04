@@ -16,3 +16,6 @@ server:
 	$(CC) $(NET_SRC) $(BASE_SRC) $(TCP_SRC) ChatServer.cpp -o chatserver $(CXXFLAGS)
 client:
 	$(CC) $(NET_SRC) $(BASE_SRC) $(TCP_SRC) ChatClient-SingleUser.cpp -o chatclient $(CXXFLAGS)
+
+multiclient:
+	$(CC) $(NET_SRC) $(BASE_SRC) $(TCP_SRC) ChatClient-MultiUser.cpp -o chatmulitclient $(CXXFLAGS)

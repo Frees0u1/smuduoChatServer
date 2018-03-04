@@ -62,7 +62,7 @@ private:
     void onStringMessage(const TcpConnectionPtr& conn, const std::string msg, Timestamp recvTime){
         assert(conns_.find(conn) != conns_.end()); //确保发消息来的连接是server已经建立的连接
         //群发消息 -- 之后可以根据消息类型选取不同的用户进行发送
-        printf("Server sent [%s]\n", msg.c_str());
+        //printf("Server sent [%s]\n", msg.c_str());
         for(const TcpConnectionPtr& conn : conns_) {
             codec_.send(conn, msg);
         }

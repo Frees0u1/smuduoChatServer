@@ -784,3 +784,54 @@ Everything is done, Logger quit!
 
 
 
+## C++11带来的随机数生成器
+
+### 1. random_device
+标准库提供了一个**非确定性随机数**生成设备,在Linux的实现中,是读取/dev/urandom设备;random_device提供()操作符,用来返回一个min-max之间的一个数字.如果在Linux下,都可以使用这个来产生高质量的随机数,可以理解为**真随机数**.
+```cpp
+#include <iostream>
+#include <random>
+int main() {
+    std::random_device rd;
+    for(int n = 0; n < 20000; ++n) {
+        std::cout << rd() <<  std::endl;
+    }
+    return 0;
+}
+```
+
+### 2. random number engine
+标准库中把随机数抽象成随机数引擎和分布两个部分. 引擎用来产生随机数,分布产生特定的随机数(比如平均分布,正态分布等). 标准库提供三种常用的引擎: ```linear_congruential_engine```,```mersenne_twister_engine```和```subtract_with_carry_engine```, 第一种是线性同余算法,第二种是梅森旋转算法,第三种带进位的线性同余算法. 第一种是最为常用的,而且速度也非常快; 第二种号称是最好的伪随机数生成器
+
+随机数引擎接收一个整型参数作为种子,不提供的话则使用默认值.推荐使用random_device来产生一个随机数当做种子.
+
+```cpp
+#include <iostream>
+#include <random>
+
+int main() {
+    std::random_device rd;
+    std::mt19937 mt(rd());
+    for(int i = 0; n < 10; n++){
+        std::cout << mt() << std::endl;
+    }
+    return 0;
+}
+```
+### 3. random number distibutions
+
+标准库提供各种各样的分布,比如平均分布,正态分布等,使用方式如下
+```cpp
+#include <random>
+#include <iostream>
+int main() {
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_int_distribution<> dis(1, 6);
+    for(int n = 0; n < 10; ++n){
+        std::cout << dis(gen) << ' ';
+    }
+    std::cout << '\n';
+}
+```
+

@@ -44,7 +44,7 @@ public:
                 // 现在length合法, 缓冲区也有足够的数据可读,现在要做的就是将其提取出来
                 buf->retrieve(kHeaderLen); //取出消息头的4个字节
                 std::string msg(buf->peek(), len);
-                printf("\n");
+               // printf("\n");
                 stringMessageCallback_(conn, msg, recvTime); //解码之后的string交给ChatServer处理
                 buf->retrieve(len);
             }

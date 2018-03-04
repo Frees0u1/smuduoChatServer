@@ -3,24 +3,24 @@
 /// 起两个线程,一个线程专门负责读,一个线程专门负责写
 ///
 
+
+
+#include "Codec.h"
 #include "./TCP/TcpClient.h"
 #include "./TCP/InetAddress.h"
 #include "./Base/Timestamp.h"
 #include "./Net/EventLoop.h"
 #include "./Net/EventLoopThreadPool.h"
 
-#include "Codec.h"
-
 #include <cstdio>
 #include <functional>
-#include <mutex>
 #include <iostream>
 #include <iterator>
 #include <algorithm>
 #include <thread>
 #include <chrono>
 #include <string>
-using namespace std::placeholders;
+#include <mutex>
 
 class ChatClient {
 public:
@@ -90,6 +90,8 @@ private:
     Codec codec_;
 };
 
+
+using namespace std::placeholders;
 
 
 int main(int argc, char** argv) {

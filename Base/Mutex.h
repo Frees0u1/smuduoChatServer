@@ -1,16 +1,16 @@
 #ifndef SMUDUO_BASE_MUTEX_H
 #define SMUDUO_BASE_MUTEX_H
 
-#include <boost/noncopyable.hpp>
 #include <assert.h>
 #include <pthread.h>
 #include <unistd.h>
 #include <sys/types.h>
 #include <errno.h>
 #include <sys/syscall.h>
+#include "Common.h"
 #define gettid() syscall(SYS_gettid)
 
-class MutexLock : boost::noncopyable {
+class MutexLock : smuduo::noncopyable {
 public:
     MutexLock() : holder_(0) {
         pthread_mutex_init(&mutex_, NULL);
@@ -44,7 +44,7 @@ private:
 };
 
 
-class MutexLockGuard : boost::noncopyable {
+class MutexLockGuard : smuduo::noncopyable {
 public:
     explicit MutexLockGuard(MutexLock& mutex) : mutex_(mutex) {
         mutex_.lock(); //创建Guard加锁

@@ -10,8 +10,8 @@
 // It's recommanded to pass it by value, since it's passed in register on x64
 
 
-class Timestamp : public smuduo::copyable,
-                public boost::less_than_comparable<Timestamp>
+class Timestamp : public smuduo::copyable
+ //               public boost::less_than_comparable<Timestamp>
 {
 public:
     Timestamp() : microSecondsSinceEpoch_ (0) {
@@ -55,6 +55,21 @@ inline bool operator<(Timestamp lhs, Timestamp rhs){
 inline bool operator==(Timestamp lhs, Timestamp rhs) {
     return lhs.microSecondsSinceEpoch() == rhs.microSecondsSinceEpoch();
 }
+
+inline bool operator>(Timestamp lhs, Timestamp rhs) {
+    return rhs < lhs;
+}
+
+inline bool operator<=(Timestamp lhs, Timestamp rhs) {
+    return lhs < rhs || lhs == rhs;
+}
+inline bool operator>=(Timestamp lhs, Timestamp rhs) {
+    return rhs < lhs || lhs == rhs;
+}
+inline bool operator!=(Timestamp lhs, Timestamp rhs) {
+    return !(lhs == rhs);
+}
+
 
 // Gets time difference of two timestamps, result in seconds
 //
