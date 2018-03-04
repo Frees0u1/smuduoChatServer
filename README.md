@@ -1,7 +1,7 @@
 # 基于SMUDUO网络库的高并发在线聊天服务器
 
 ## 由来
-阅读陈硕先生《Linux多线程服务端编程》后，受益匪浅。匆匆浏览，深知纸上得来终觉浅，于是对照书中代码，一步步重新实现Muduo网络库。因功能相较于陈硕先生少很多，故命名为SMUDUO, S即为small.
+阅读陈硕先生《Linux多线程服务端编程》后，受益匪浅。匆匆浏览，深知纸上得来终觉浅，于是对照书中代码，一步步重新实现Muduo网络库。因功能相较于MUDUO少很多，故命名为SMUDUO, S即为small.
 
 除根据陈硕先生在书中以及博览网《网络编程实战》的指导外，smuduo大量引入C++11标准内容，替代书中许多boost依赖以及自实现的基本库函数，比如thread,mutex,lock_guard,condition_variable, bind, function，atomic等等。
 
