@@ -19,3 +19,5 @@ client:
 
 multiclient:
 	$(CC) $(NET_SRC) $(BASE_SRC) $(TCP_SRC) ChatClient-MultiUser.cpp -o chatmulitclient $(CXXFLAGS)
+http200:
+	$(CC) $(NET_SRC) $(BASE_SRC) $(TCP_SRC) HTTP200_WebServer.cpp -o HTTP200 $(CXXFLAGS)
