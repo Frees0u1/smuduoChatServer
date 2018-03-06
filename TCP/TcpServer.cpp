@@ -63,7 +63,7 @@ void TcpServer::newConnection(int sockfd, const InetAddress& peerAddr) {
 
     std::string connName = name_ + buf;
 
-    printf("LOG_INFO: TcpServer::newConnection [%s] - new connection [%s] from %s\n", name_.c_str(), connName.c_str(), peerAddr.toIpPort().c_str());
+    //printf("LOG_INFO: TcpServer::newConnection [%s] - new connection [%s] from %s\n", name_.c_str(), connName.c_str(), peerAddr.toIpPort().c_str());
     InetAddress localAddr(sockets::getLocalAddr(sockfd));
     EventLoop* ioLoop = threadPool_->getNextLoop();
     //FIXME: poll with zero timeout to double confirm the newconnection
@@ -94,7 +94,7 @@ void TcpServer::removeConnection(const TcpConnectionPtr& conn) {
 
 void TcpServer::removeConnectionInLoop(const TcpConnectionPtr& conn) {
     loop_->assertInLoopThread();
-    printf("LOG_INFO: TcpServer::removeConnectionInLoop [%s] - connection %s\n", name_.c_str(), conn->name().c_str());
+    //printf("LOG_INFO: TcpServer::removeConnectionInLoop [%s] - connection %s\n", name_.c_str(), conn->name().c_str());
 
     size_t n =  connections_.erase(conn->name());
     assert( n == 1); (void)n;

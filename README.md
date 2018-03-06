@@ -50,9 +50,22 @@
 ```
 发送与接收数据匹配,基本功能能够保证.
 
+**Webbench压力测试**
+用Smuduo网络库编写了HTTP200Server, 即不管客户端发送任何请求, 均只回复HTTP200响应报文. 在此条件下,用webbench做了简单的压力测试,可支持1w+并发连接
+```
+Webbench - Simple Web Benchmark 1.5
+Copyright (c) Radim Kolar 1997-2004, GPL Open Source Software.
+
+Benchmarking: GET http://localhost:9981/
+10240 clients, running 10 sec.
+
+Speed=2794656 pages/min, 4983321 bytes/sec.
+Requests: 465776 susceed, 0 failed.
+```
+
+
 ## TODO
 
-* 压力测试与优化
 * 网络库中添加高性能logger
 * 加入登录验证,私发消息等功能
 

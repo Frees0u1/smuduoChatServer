@@ -16,15 +16,18 @@ std::string g_ServerMsg;
 
 void onConnection(const TcpConnectionPtr& conn){
     if(conn->connected()) { 
-        printf("New Connection from %s\n", conn->peerAddress().toIpPort().c_str());
+        //printf("New Connection from %s\n", conn->peerAddress().toIpPort().c_str());
+        ;
     }
     else { //已经关闭连接,此时连接断开了
-        printf("Connetion from %s is Down!\n", conn->peerAddress().toIpPort().c_str());
+        //printf("Connetion from %s is Down!\n", conn->peerAddress().toIpPort().c_str());
+        ;
     }
 }
 
 void onMessage(const TcpConnectionPtr& conn, Buffer* buf, Timestamp recvTime) {
     //收到一条消息,不管是什么,回复一个200OK
+
     conn->send(g_ServerMsg);
 }
 
@@ -44,10 +47,11 @@ int main() {
     EventLoop loop;
     InetAddress listenAddr(9981);
     TcpServer server(&loop, listenAddr);
-
+    
     server.setConnectionCallback(onConnection);
     server.setMessageCallback(onMessage);
     server.setWriteCompleteCallback(onWriteComplete);
+    server.setThreadNum(2); //双线程
 
     server.start();
 
